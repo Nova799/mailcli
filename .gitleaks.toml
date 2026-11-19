@@ -1,0 +1,13 @@
+title = "mailcli gitleaks config"
+
+[allowlist]
+description = "Fichiers d'exemple et docs (placeholders, pas de vrais secrets)"
+paths = [
+    '''config\.example\.json''',
+    '''README\.md''',
+]
+regexes = [
+    '''your\.email@gmail\.com''',
+    '''your-16-char-app-password''',
+    '''x@y\.com''',
+]

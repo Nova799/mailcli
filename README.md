@@ -1,5 +1,7 @@
 # mailcli
 
+[![secret-scan](https://github.com/Nova799/mailcli/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/Nova799/mailcli/actions/workflows/secret-scan.yml)
+
 CLI Python pour lire (et seulement lire) une boîte mail **Gmail** depuis le terminal, via IMAP et un mot de passe d'application. Sans navigateur, sans client lourd, scriptable.
 
 > ⚠️ `mailcli` ne permet pas d'envoyer des mails. Il est orienté lecture : lister, rechercher, lire, télécharger les pièces jointes, marquer lu/non lu, supprimer.
@@ -7,7 +9,7 @@ CLI Python pour lire (et seulement lire) une boîte mail **Gmail** depuis le ter
 ## Installation
 
 ```bash
-git clone https://github.com/<vous>/mailcli.git
+git clone https://github.com/Nova799/mailcli.git
 cd mailcli
 ./install.sh
 ```
@@ -86,6 +88,13 @@ mailcli download <uid> -i 1 -o ~/Downloads
 - Pièces jointes chargées en mémoire avant écriture.
 - `delete` copie le mail dans la corbeille détectée automatiquement avant de l'expunger.
 - Le HTML est converti en texte basique.
+- Le dépôt utilise un workflow `secret-scan` ([badge](https://github.com/Nova799/mailcli/actions/workflows/secret-scan.yml)) qui vérifie que le dépôt (historique compris) ne contient pas de credentials : [gitleaks](https://github.com/gitleaks/gitleaks) + recherche de motifs de mots de passe d'application Gmail + contrôle que `config.json` n'est jamais tracké.
+
+Pour ajouter votre propre scan local avant `git push` :
+
+```bash
+gitleaks detect --source . --config .gitleaks.toml
+```
 
 ## Licence
 
